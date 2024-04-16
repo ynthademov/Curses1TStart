@@ -1,0 +1,97 @@
+*-* coding: utf-8 *-*
+import turtle
+
+import random
+
+
+class Figure:
+
+    def __init__(self):
+        self.points = []
+
+    def add_point(self, x, y):
+        self.points.append((x, y))
+
+    def draw(self, color):
+        turtle.color(color)
+
+        turtle.begin_fill()
+
+        for point in self.points:
+            turtle.goto(point)
+
+        turtle.end_fill()
+
+    def clear(self):
+        turtle.clear()
+
+
+figure = Figure()
+
+# Р—Р°РґР°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РµРє С„РёРіСѓСЂ
+
+# РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
+
+figure.add_point(0, 0)
+
+figure.add_point(100, 0)
+
+figure.add_point(100, 100)
+
+figure.add_point(0, 100)
+
+# РўСЂРµСѓРіРѕР»СЊРЅРёРє
+
+# figure.add_point(0, 0)
+
+# figure.add_point(100, 0)
+
+# figure.add_point(100, 100)
+
+
+# РљСЂСѓРі
+
+# for i in range(360):
+
+#     x = 100 * math.cos(math.radians(i))
+
+#     y = 100 * math.sin(math.radians(i))
+
+#     figure.add_point(x, y)
+
+
+turtle.speed(0)
+
+turtle.bgcolor("black")
+
+colors = ["red", "green", "blue", "yellow", "purple", "orange"]
+
+figure_size = 100  # Р—Р°РґР°РµРј СЂР°Р·РјРµСЂ С„РёРіСѓСЂС‹
+
+while True:
+    figure.clear()  # РћС‡РёС‰Р°РµРј СЌРєСЂР°РЅ
+
+    # Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ С„РёРіСѓСЂС‹
+
+    x = random.randint(-200, 200)
+
+    y = random.randint(-200, 200)
+
+    # Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ С†РІРµС‚ РёР· СЃРїРёСЃРєР° colors
+
+    color = random.choice(colors)
+
+    turtle.up()
+
+    turtle.goto(x, y)
+
+    turtle.down()
+
+    # РњР°СЃС€С‚Р°Р±РёСЂСѓРµРј С„РёРіСѓСЂСѓ
+
+    scaled_points = [(point[0] * figure_size + x, point[1] * figure_size + y) for point in figure.points]
+
+    # Р РёСЃСѓРµРј С„РёРіСѓСЂСѓ СЃ Р·Р°РґР°РЅРЅС‹Рј С†РІРµС‚РѕРј Рё РјР°СЃС€С‚Р°Р±РѕРј
+
+    figure.draw(color)
+    turtle.exitonclick()
